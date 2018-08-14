@@ -2,65 +2,41 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
-//https://www.hackerrank.com/challenges/bitwise-operators-in-c/problem
 //Complete the following function.
-
-/*int maxValue(int myArray[], int size) {
-    int maxValue = myArray[0];
-    int i;
-    for (i = 1; i < size; ++i) {
-        if ( myArray[i] > maxValue ) {
-            maxValue = myArray[i];
-        }
-    }
-    return maxValue;
-} */
+//Finally solved this before c drove me crazy :)
+//https://www.hackerrank.com/challenges/bitwise-operators-in-c/problem
+    
 
 void calculate_the_maximum(int n, int k) {
   //Write your code here.
-    int and[n]; 
-    int or[n];
-    int xor[n];
-   int i;
-    for ( i = 0; i < k-1; i++ ) {
-            and[i]=i&(i+1);
-            or[i]=i|(i+1);
-            xor[i]=i^(i+1);
-            
-        }
-    /*int m;
-    for (m = 0; m < n; m++ ) {
-      printf("Element[%d] = %d\n",m, xor[m] );
-    }*/
-    int s;
-    int maxValue;
-    maxValue=and[0];
-    for (s = 1; s < k; ++s) {
-        if ( and[s] > maxValue ) {
-            maxValue = and[s];
-        }
-    }
-    printf("%d\n",maxValue);
+   int and =0 ;
+    int or = 0;
+    int xor = 0;
     
-    int s2;
-    int maxValue2;
-    maxValue2=or[0];
-    for (s2 = 1; s2 < k; ++s2) {
-        if ( or[s2] > maxValue2 ) {
-            maxValue2 = or[s2];
+    int i;
+    for (i = 1; i <= n; i++) {
+        int j;
+        for(j=i+1; j <= n; j++){
+            int t1;
+            int t2;
+            int t3;
+            t1=i&j;
+            t2=i|j;
+            t3=i^j;
+            if((t1 > and) && (t1 < k)){
+                and=t1;
+            }
+            if((t2 > or) && (t2 < k)){
+                or=t2;
+            }
+            if((t3 > xor) && (t3 < k)){
+                xor=t3;
+            }
         }
+        
     }
-    printf("%d\n",maxValue2);
+    printf("%d\n%d\n%d\n",and,or,xor);
     
-    int s3;
-    int maxValue3;
-    maxValue3=xor[0];
-    for (s3 = 1; s3 < k; ++s3) {
-        if ( xor[s3] > maxValue3 ) {
-            maxValue3 = xor[s3];
-        }
-    }
-    printf("%d\n",maxValue3);
 }
 
 int main() {
